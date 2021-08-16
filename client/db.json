@@ -1,0 +1,38 @@
+{
+  "orders": [
+    {
+      "id": "1",
+      "order-number": "1",
+      "items": [
+        {
+          "type": "burrito",
+          "protein": [
+            "chicken"
+          ],
+          "rice": [
+            "white"
+          ],
+          "beans": [
+            "black beans"
+          ],
+          "toppings": [
+            "tomatillo-red chili salsa",
+            "tomatillo-green chili salsa",
+            "guacamole",
+            "sour cream",
+            "cheese",
+            "romaine lettuce"
+          ],
+          "sides": [
+            "chips and hot salsa"
+          ],
+          "drinks": [
+            "fountain drink"
+          ],
+          "item-price": "16.49"
+        }
+      ],
+      "total-price": "16.49"
+    }
+  ]
+}
