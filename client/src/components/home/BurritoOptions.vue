@@ -203,67 +203,67 @@ export default {
       let price = 0;
       if (this.protein.length === 1) {
         if (this.protein[0] === "Chicken") {
-          price = price + 8.15;
+          price += 8.15;
         } else if (this.protein[0] === "Carnitas") {
-          price = price + 8.65;
+          price += 8.65;
         } else {
-          price = price + 9.5;
+          price += 9.5;
         }
       } else if (this.protein.length > 1) {
-        price = 9.5;
+        price += 9.5;
       }
       if (this.toppings.includes("Guacamole")) {
-        price = price + 2.5;
+        price += 2.5;
       }
 
       if (this.toppings.includes("Queso")) {
-        price = price + 1.6;
+        price += 1.6;
       }
 
       if (this.sides.includes("Chips")) {
-        price = price + 1.7;
+        price += 1.7;
       }
 
       if (this.sides.includes("Chips and Guacamole")) {
-        price = price + 4.2;
+        price += 4.2;
       }
 
       if (this.sides.includes("Chips and Tomato Salsa")) {
-        price = price + 2.25;
+        price += 2.25;
       }
 
       if (this.sides.includes("Chips and Hot Salsa")) {
-        price = price + 2.25;
+        price += 2.25;
       }
       if (this.sides.includes("Chips and Medium Salsa")) {
-        price = price + 2.25;
+        price += 2.25;
       }
       if (this.sides.includes("Chips and Queso")) {
-        price = price + 4.2;
+        price += 4.2;
       }
 
       if (this.sides.includes("Guacamole")) {
-        price = price + 2.5;
+        price += 2.5;
       }
 
       if (this.sides.includes("Queso")) {
-        price = price + 2.5;
+        price += 2.5;
       }
 
       if (this.drinks.includes("Fountain Drink")) {
-        price = price + 2.65;
+        price += 2.65;
       }
 
       if (this.drinks.includes("Izze")) {
-        price = price + 3.2;
+        price += 3.2;
       }
 
       if (this.drinks.includes("Juice")) {
-        price = price + 3.2;
+        price += 3.2;
       }
 
       if (this.drinks.includes("Bottled Water")) {
-        price = price + 2.6;
+        price += 2.6;
       }
 
       // console.log(this.toppings);
