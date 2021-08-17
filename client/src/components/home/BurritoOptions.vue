@@ -122,7 +122,7 @@
       type="checkbox"
       id="chips-hot-salsa"
       v-model="sides"
-      value="Chip and Hot Salsa"
+      value="Chips and Hot Salsa"
     />
     <label for="chips-hot-salsa">Chips &#38; Hot Salsa</label>
     <br />
@@ -158,7 +158,7 @@
     />
     <label for="bottled-water">Bottled Water</label>
     <hr />
-    <h2>Price: {{ itemPrice }}</h2>
+    <h2>Price: ${{ itemPrice }}</h2>
 
     <div class="form-buttons">
       <input type="submit" value="Add Item to Bag" />
@@ -184,6 +184,7 @@ export default {
   emits: ["cancel", "add-item"],
   methods: {
     addItemToBag() {
+      // this.calculateItemPrice();
       let orderItem = {
         protein: this.protein,
         rice: this.rice,
@@ -191,36 +192,96 @@ export default {
         toppings: this.toppings,
         sides: this.sides,
         drinks: this.drinks,
-        itemPrice: this.itemPrice,
+        itemPrice: this.calculateItemPrice(),
       };
 
-      console.log("orderItem", orderItem);
+      console.log(orderItem);
 
       this.$emit("add-item", orderItem);
     },
     calculateItemPrice() {
       let price = 0;
-      if (this.proten && this.protein.length === 1) {
+      if (this.protein.length === 1) {
         if (this.protein[0] === "Chicken") {
           price = price + 8.15;
-        } else if (this.protein && this.protein[0] === "Carnitas") {
+        } else if (this.protein[0] === "Carnitas") {
           price = price + 8.65;
         } else {
           price = price + 9.5;
         }
-      } else if (this.protein && this.protein.length > 1) {
+      } else if (this.protein.length > 1) {
         price = 9.5;
       }
-
-      if (this.toppings && this.toppings.contains("Guacamole")) {
+      if (this.toppings.includes("Guacamole")) {
         price = price + 2.5;
       }
 
-      if (this.toppings && this.toppings.contains("Queso")) {
+      if (this.toppings.includes("Queso")) {
         price = price + 1.6;
       }
 
-      return price;
+      if (this.sides.includes("Chips")) {
+        price = price + 1.7;
+      }
+
+      if (this.sides.includes("Chips and Guacamole")) {
+        price = price + 4.2;
+      }
+
+      if (this.sides.includes("Chips and Tomato Salsa")) {
+        price = price + 2.25;
+      }
+
+      if (this.sides.includes("Chips and Hot Salsa")) {
+        price = price + 2.25;
+      }
+      if (this.sides.includes("Chips and Medium Salsa")) {
+        price = price + 2.25;
+      }
+      if (this.sides.includes("Chips and Queso")) {
+        price = price + 4.2;
+      }
+
+      if (this.sides.includes("Guacamole")) {
+        price = price + 2.5;
+      }
+
+      if (this.sides.includes("Queso")) {
+        price = price + 2.5;
+      }
+
+      if (this.drinks.includes("Fountain Drink")) {
+        price = price + 2.65;
+      }
+
+      if (this.drinks.includes("Izze")) {
+        price = price + 3.2;
+      }
+
+      if (this.drinks.includes("Juice")) {
+        price = price + 3.2;
+      }
+
+      if (this.drinks.includes("Bottled Water")) {
+        price = price + 2.6;
+      }
+
+      // console.log(this.toppings);
+      return price.toFixed(2);
+    },
+  },
+  watch: {
+    protein: function () {
+      this.itemPrice = this.calculateItemPrice();
+    },
+    toppings: function () {
+      this.itemPrice = this.calculateItemPrice();
+    },
+    sides: function () {
+      this.itemPrice = this.calculateItemPrice();
+    },
+    drinks: function () {
+      this.itemPrice = this.calculateItemPrice();
     },
   },
 };

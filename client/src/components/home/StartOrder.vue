@@ -29,10 +29,7 @@ export default {
   },
   methods: {
     addToBag: function (item) {
-      console.log("adding item");
-      console.log(item);
       this.order = [...this.order, item];
-      console.log(this.order);
     },
   },
 };
