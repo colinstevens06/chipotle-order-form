@@ -16,10 +16,12 @@ export default {
 
 <style lang="scss" scoped>
 .nav-container {
+  position: relative;
   display: flex;
   padding: 10px 25px;
-  border-bottom: 1px solid #5f5f5f;
-  box-shadow: 0 2px 6px 6px#656565, 0 4px 6px 6px #7a7a7a, 0 6px 6px 6px #bebebe;
+  border-bottom: 1px solid #202020;
+  box-shadow: 0 2px 6px 6px#202020, 0 4px 4px 4px #2f2f2f, 0 6px 4px 4px #393939;
+  z-index: 98;
 }
 
 .nav-branding {

@@ -1,6 +1,7 @@
 <template>
   <form class="burrito-form" @submit.prevent="addItemToBag">
-    <h2>Protein</h2>
+    <h2 style="text-align: center">Build Your Burrito</h2>
+    <h3>Protein</h3>
     <input type="checkbox" id="chicken" v-model="protein" value="Chicken" />
     <label for="Chicken">Chicken</label>
     <input type="checkbox" id="steak" v-model="protein" value="Steak" />
@@ -10,7 +11,7 @@
     <input type="checkbox" id="barbacoa" v-model="protein" value="Barbacoa" />
     <label for="barbacoa">Barbacoa</label>
     <hr />
-    <h2>Rice</h2>
+    <h3>Rice</h3>
     <input type="radio" id="white-rice" v-model="rice" value="White Rice" />
     <label for="white-rice">White Rice</label>
     <input type="radio" id="brown-rice" v-model="rice" value="Brown Rice" />
@@ -18,7 +19,7 @@
     <input type="radio" id="no-rice" v-model="rice" value="No Rice" />
     <label for="no-rice">No Rice</label>
     <hr />
-    <h2>Beans</h2>
+    <h3>Beans</h3>
     <input type="radio" id="black-beans" v-model="beans" value="Black Beans" />
     <label for="black-beans">Black Beans</label>
     <input type="radio" id="pinto-beans" v-model="beans" value="Pinto Beans" />
@@ -28,7 +29,7 @@
     <hr />
 
     <!-- TOPPINGS -->
-    <h2>Toppings</h2>
+    <h3>Toppings</h3>
     <input
       type="checkbox"
       id="guacamole"
@@ -90,7 +91,7 @@
     <hr />
 
     <!-- SIDES -->
-    <h2>Sides</h2>
+    <h3>Sides</h3>
     <input type="checkbox" id="chips" v-model="sides" value="Chips" />
     <label for="chips">Chips</label>
 
@@ -138,7 +139,7 @@
     <input type="checkbox" id="queso" v-model="sides" value="Queso" />
     <label for="queso">Queso</label>
     <hr />
-    <h2>Drinks</h2>
+    <h3>Drinks</h3>
     <input
       type="checkbox"
       id="fountain-drink"
@@ -198,6 +199,8 @@ export default {
       console.log(orderItem);
 
       this.$emit("add-item", orderItem);
+
+      // window.location.href = "/";
     },
     calculateItemPrice() {
       let price = 0;
@@ -302,9 +305,30 @@ export default {
     margin-right: 25px;
   }
 
+  label,
+  input {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+  }
+
   .form-buttons {
     display: flex;
     justify-content: space-evenly;
+    margin-top: 20px;
+
+    input,
+    button {
+      background: #1b0800;
+      color: #ffffff;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      transition: 0.5s;
+      &:hover {
+        cursor: pointer;
+        transition: 0.5s;
+      }
+    }
   }
 }
 </style>
