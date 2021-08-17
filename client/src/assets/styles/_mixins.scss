@@ -1,0 +1,12 @@
+@mixin basicButton {
+  background: #1b0800;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  transition: 0.5s;
+  &:hover {
+    cursor: pointer;
+    transition: 0.5s;
+  }
+}

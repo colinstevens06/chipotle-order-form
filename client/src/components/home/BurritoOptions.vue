@@ -183,10 +183,12 @@ export default {
     };
   },
   emits: ["cancel", "add-item"],
+  props: ["orderType"],
   methods: {
     addItemToBag() {
-      // this.calculateItemPrice();
       let orderItem = {
+        itemID: this.generateRandomID(),
+        itemType: this.orderType,
         protein: this.protein,
         rice: this.rice,
         beans: this.beans,
@@ -199,8 +201,6 @@ export default {
       console.log(orderItem);
 
       this.$emit("add-item", orderItem);
-
-      // window.location.href = "/";
     },
     calculateItemPrice() {
       let price = 0;
@@ -272,6 +272,10 @@ export default {
       // console.log(this.toppings);
       return price.toFixed(2);
     },
+    generateRandomID() {
+      let newID = Math.floor(Math.random() * 100000);
+      return newID;
+    },
   },
   watch: {
     protein: function () {
@@ -318,16 +322,7 @@ export default {
 
     input,
     button {
-      background: #1b0800;
-      color: #ffffff;
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 1.5rem;
-      transition: 0.5s;
-      &:hover {
-        cursor: pointer;
-        transition: 0.5s;
-      }
+      @include basicButton;
     }
   }
 }

@@ -3,13 +3,13 @@
     <div class="start-order_heading" v-if="orderType === ''">
       Start Your Order
     </div>
-    <div class="start-order_heading" v-else-if="orderType === 'AnotherItem'">
+    <div class="start-order_heading" v-else-if="orderType === 'another-item'">
       Add Another Item?
     </div>
 
     <div
       class="start-order_options"
-      v-if="orderType === '' || orderType === 'AnotherItem'"
+      v-if="orderType === '' || orderType === 'another-item'"
     >
       <div class="order-card" @click="orderType = 'burrito'">Burrito</div>
       <div class="order-card">Bowl</div>
@@ -18,39 +18,52 @@
     <div class="burrito-options" v-if="orderType === 'burrito'">
       <BurritoOptions
         @cancel="
-          order.length > 1 ? (orderType = 'AnotherItem') : (orderType = '')
+          orderItems.length > 1
+            ? (orderType = 'another-item')
+            : (orderType = '')
         "
         @add-item="addToBag"
+        :orderType="orderType"
       />
     </div>
+    <div class="editOrder" v-if="orderType === 'edit-order'">
+      <EditOrder :orderItems="orderItems" />
+    </div>
 
-    <div class="order_bag" v-if="orderType === 'AnotherItem'">
-      <div class="order_items-in-bag">Items in bag: {{ order.length }}</div>
-      <div class="order_edit-complete"></div>
+    <div class="order_bag" v-if="orderType === 'another-item'">
+      <div class="order_items-in-bag">
+        Items in bag: {{ orderItems.length }}
+      </div>
+      <div class="order_edit-complete">
+        <button @click="orderType = 'edit-order'">Edit Order</button>
+        <button>Submit Order</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import BurritoOptions from "./BurritoOptions.vue";
+import EditOrder from "./EditOrder.vue";
 
 export default {
   name: "StartOrder",
   components: {
     BurritoOptions,
+    EditOrder,
   },
   data() {
     return {
       orderType: "",
-      order: [],
+      orderItems: [],
       orderTotal: 0,
     };
   },
   methods: {
     addToBag: function (item) {
-      this.order = [...this.order, item];
+      this.orderItems = [...this.orderItems, item];
       console.log(this.order);
-      this.orderType = "AnotherItem";
+      this.orderType = "another-item";
     },
   },
 };
@@ -58,6 +71,9 @@ export default {
 
 <style lang="scss" scoped>
 .start-order_container {
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
   background: rgb(236, 236, 236);
   min-height: 50vh;
   min-width: 50%;
@@ -73,6 +89,7 @@ export default {
     font-size: 1.5rem;
     color: $primaryFontColor;
     margin: 15px;
+    // align-self: baseline;
   }
 
   .start-order_options {
@@ -96,6 +113,23 @@ export default {
         cursor: pointer;
         transition: 0.5s;
         box-shadow: 0 0 16px 0 rgb(0 0 0 / 60%);
+      }
+    }
+  }
+
+  .order_bag {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+    margin-top: 25px;
+
+    .order_edit-complete {
+      display: flex;
+      justify-content: space-around;
+      button {
+        @include basicButton;
+        width: 200px;
       }
     }
   }
