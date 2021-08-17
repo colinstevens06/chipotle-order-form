@@ -8,7 +8,7 @@
       <div class="order-card">Tacos</div>
     </div>
     <div class="burrito-options" v-if="orderType === 'burrito'">
-      <BurritoOptions />
+      <BurritoOptions @cancel="orderType = ''" @add-item="addToBag" />
     </div>
   </div>
 </template>
@@ -27,6 +27,14 @@ export default {
       order: [],
     };
   },
+  methods: {
+    addToBag: function (item) {
+      console.log("adding item");
+      console.log(item);
+      this.order = [...this.order, item];
+      console.log(this.order);
+    },
+  },
 };
 </script>
 
@@ -38,8 +46,9 @@ export default {
   border-radius: 5px;
   padding: 12px 24px;
   margin: -3%;
-  transform: translate(0, -25%);
+  // transform: translate(0, -25%);
   font-family: $fontFamily;
+  overflow: scroll;
 
   .start-order_heading {
     text-align: center;
