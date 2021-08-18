@@ -27,7 +27,14 @@
       />
     </div>
     <div class="editOrder" v-if="orderType === 'edit-order'">
-      <EditOrder :orderItems="orderItems" />
+      <EditOrder
+        :orderItems="orderItems"
+        @cancel="
+          orderItems.length > 1
+            ? (orderType = 'another-item')
+            : (orderType = '')
+        "
+      />
     </div>
 
     <div class="order_bag" v-if="orderType === 'another-item'">

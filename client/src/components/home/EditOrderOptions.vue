@@ -1,5 +1,9 @@
 <template>
-  <div>{{ order.protein[0] }}: {{ order.itemPrice }}</div>
+  <div>
+    {{ order.protein[0] }}
+    {{ order.itemType }}:
+    {{ order.itemPrice }}
+  </div>
 </template>
 
 <script>

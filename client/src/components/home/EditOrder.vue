@@ -1,10 +1,13 @@
 <template>
   <div>
     <h1>Edit Your Order</h1>
-    <div v-for="order in orderItems" :key="order.itemID">
-      <EditOrderOptions :order="order" />
+    <div class="edit-order_options" v-if="orderSelected === false">
+      <div v-for="order in orderItems" :key="order.itemID">
+        <EditOrderOptions :order="order" />
+      </div>
+      <button class="edit_back-button" @click="$emit('cancel')">Back</button>
     </div>
-    <!-- <p>{{ ordersToEdit[0].orderType }}</p> -->
+    <div class="edit-order_selected-item" v-if="orderSelected === true"></div>
   </div>
 </template>
 
@@ -16,14 +19,17 @@ export default {
   props: {
     orderItems: Array,
   },
+  emits: ["cancel"],
   components: {
     EditOrderOptions,
   },
   data() {
     console.log("this.orderItems", this.orderItems);
-    // return {
-    //   ordersToEdit: this.orderItems,
-    // };
+
+    return {
+      orderSelected: false,
+      orderToEdit: {},
+    };
   },
 };
 </script>
