@@ -64,12 +64,12 @@ export default {
       orderType: "",
       orderItems: [],
       orderTotal: 0,
+      orderItemToEdit: {},
     };
   },
   methods: {
     addToBag: function (item) {
       this.orderItems = [...this.orderItems, item];
-      console.log(this.order);
       this.orderType = "another-item";
     },
   },

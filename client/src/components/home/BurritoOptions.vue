@@ -183,7 +183,7 @@ export default {
     };
   },
   emits: ["cancel", "add-item"],
-  props: ["orderType"],
+  props: ["orderType", "orderItemToEdit"],
   methods: {
     addItemToBag() {
       let orderItem = {
@@ -197,8 +197,6 @@ export default {
         drinks: this.drinks,
         itemPrice: this.calculateItemPrice(),
       };
-
-      console.log(orderItem);
 
       this.$emit("add-item", orderItem);
     },
@@ -215,26 +213,22 @@ export default {
       } else if (this.protein.length > 1) {
         price += 9.5;
       }
+
       if (this.toppings.includes("Guacamole")) {
         price += 2.5;
       }
-
       if (this.toppings.includes("Queso")) {
         price += 1.6;
       }
-
       if (this.sides.includes("Chips")) {
         price += 1.7;
       }
-
       if (this.sides.includes("Chips and Guacamole")) {
         price += 4.2;
       }
-
       if (this.sides.includes("Chips and Tomato Salsa")) {
         price += 2.25;
       }
-
       if (this.sides.includes("Chips and Hot Salsa")) {
         price += 2.25;
       }
@@ -244,32 +238,24 @@ export default {
       if (this.sides.includes("Chips and Queso")) {
         price += 4.2;
       }
-
       if (this.sides.includes("Guacamole")) {
         price += 2.5;
       }
-
       if (this.sides.includes("Queso")) {
         price += 2.5;
       }
-
       if (this.drinks.includes("Fountain Drink")) {
         price += 2.65;
       }
-
       if (this.drinks.includes("Izze")) {
         price += 3.2;
       }
-
       if (this.drinks.includes("Juice")) {
         price += 3.2;
       }
-
       if (this.drinks.includes("Bottled Water")) {
         price += 2.6;
       }
-
-      // console.log(this.toppings);
       return price.toFixed(2);
     },
     generateRandomID() {
@@ -290,6 +276,19 @@ export default {
     drinks: function () {
       this.itemPrice = this.calculateItemPrice();
     },
+  },
+  created() {
+    console.log(this.orderItemToEdit);
+    if (this.orderItemToEdit) {
+      console.log("this.itemToEdit", this.orderItemToEdit.protein);
+      this.protein = this.orderItemToEdit.protein;
+      this.rice = this.orderItemToEdit.rice;
+      this.beans = this.orderItemToEdit.beans;
+      this.toppings = this.orderItemToEdit.toppings;
+      this.sides = this.orderItemToEdit.sides;
+      this.drinks = this.orderItemToEdit.drinks;
+      this.itemPrice = this.orderItemToEdit.itemPrice;
+    }
   },
 };
 </script>
