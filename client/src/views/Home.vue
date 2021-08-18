@@ -17,11 +17,9 @@ export default {
 
 <style lang="scss" scoped>
 .home-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: #1b0800;
   min-height: 100vh;
+  height: 100%;
   width: 100%;
 }
 </style>

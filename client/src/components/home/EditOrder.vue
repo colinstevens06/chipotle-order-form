@@ -8,7 +8,12 @@
       <button class="edit_back-button" @click="$emit('cancel')">Back</button>
     </div>
     <div class="edit-order_selected-item" v-if="orderSelected === true">
-      <BurritoOptions :orderItemToEdit="orderItemToEdit" />
+      <BurritoOptions
+        :orderItemToEdit="orderItemToEdit"
+        :orderType="orderType"
+        @cancel="$emit('cancel')"
+        @update-item="updateItem"
+      />
     </div>
   </div>
 </template>
@@ -21,8 +26,9 @@ export default {
   name: "EditOrder",
   props: {
     orderItems: Array,
+    orderType: String,
   },
-  emits: ["cancel"],
+  emits: ["cancel", "update-all-order-items"],
   components: {
     EditOrderOptions,
     BurritoOptions,
@@ -38,9 +44,19 @@ export default {
       let itemToEdit = this.orderItems.filter((item) => item.itemID === input);
 
       this.orderItemToEdit = itemToEdit[0];
-      console.log(this.orderItemToEdit);
 
       this.orderSelected = true;
+    },
+    updateItem: function (item) {
+      let itemToUpdate = item.itemID;
+      let itemToUpdateIndex = this.orderItems.findIndex(
+        (obj) => obj.itemID === itemToUpdate
+      );
+      let allOrderItems = this.orderItems;
+      allOrderItems[itemToUpdateIndex] = item;
+
+      this.$emit("update-all-order-items", allOrderItems);
+      this.orderSelected = false;
     },
   },
 };

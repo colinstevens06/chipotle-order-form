@@ -22,6 +22,7 @@ export default {
   border-bottom: 1px solid #202020;
   box-shadow: 0 2px 6px 6px#202020, 0 4px 4px 4px #2f2f2f, 0 6px 4px 4px #393939;
   z-index: 98;
+  background-color: #fff;
 }
 
 .nav-branding {
