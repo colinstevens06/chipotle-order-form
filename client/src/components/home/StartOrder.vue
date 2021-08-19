@@ -54,7 +54,9 @@
 <script>
 import BurritoOptions from "./BurritoOptions.vue";
 import EditOrder from "./EditOrder.vue";
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "StartOrder",
   components: {
     BurritoOptions,
@@ -69,7 +71,7 @@ export default {
     };
   },
   methods: {
-    addToBag: function (item) {
+    addToBag: function (item: []) {
       this.orderItems = [...this.orderItems, item];
       this.orderType = "another-item";
     },
@@ -77,7 +79,7 @@ export default {
       this.orderItems = items;
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
