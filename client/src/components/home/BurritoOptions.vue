@@ -173,8 +173,11 @@
   </form>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+import { OrderItem } from "../../types/Types";
+
+export default defineComponent({
   name: "BurritoOptions",
   data() {
     return {
@@ -191,7 +194,7 @@ export default {
   props: ["orderType", "orderItemToEdit"],
   methods: {
     addItemToBag() {
-      let orderItem;
+      let orderItem: OrderItem;
       if (
         this.orderType === "burrito" ||
         this.orderType === "bowl" ||
@@ -225,7 +228,7 @@ export default {
       }
     },
     calculateItemPrice() {
-      let price = 0;
+      let price: number = 0;
       if (this.protein.length === 1) {
         if (this.protein[0] === "Chicken") {
           price += 8.15;
@@ -282,7 +285,7 @@ export default {
       return price.toFixed(2);
     },
     generateRandomID() {
-      let newID = Math.floor(Math.random() * 100000);
+      let newID: number = Math.floor(Math.random() * 100000);
       return newID;
     },
   },
@@ -311,7 +314,7 @@ export default {
       this.itemPrice = this.orderItemToEdit.itemPrice;
     }
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

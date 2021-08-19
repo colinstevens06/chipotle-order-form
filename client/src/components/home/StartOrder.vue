@@ -51,10 +51,11 @@
   </div>
 </template>
 
-<script>
+<script lang='ts'>
 import BurritoOptions from "./BurritoOptions.vue";
 import EditOrder from "./EditOrder.vue";
 import { defineComponent } from "vue";
+import { OrderItem } from "../../types/Types";
 
 export default defineComponent({
   name: "StartOrder",
@@ -67,15 +68,14 @@ export default defineComponent({
       orderType: "",
       orderItems: [],
       orderTotal: 0,
-      orderItemToEdit: {},
     };
   },
   methods: {
-    addToBag: function (item: []) {
+    addToBag: function (item: OrderItem) {
       this.orderItems = [...this.orderItems, item];
       this.orderType = "another-item";
     },
-    updateAllOrderItems: function (items) {
+    updateAllOrderItems: function (items: [OrderItem]) {
       this.orderItems = items;
     },
   },
