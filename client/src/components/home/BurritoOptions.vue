@@ -162,12 +162,7 @@
     <h2>Price: ${{ itemPrice }}</h2>
 
     <div class="form-buttons">
-      <input
-        type="submit"
-        :value="
-          this.orderType === 'edit-order' ? 'Update Item' : 'Add Item to Bag'
-        "
-      />
+      <input type="submit" value="Add Item to Bag" />
       <button @click="$emit('cancel')">Cancel item</button>
     </div>
   </form>
@@ -187,43 +182,23 @@ export default {
       itemPrice: 0,
     };
   },
-  emits: ["cancel", "add-item", "update-item"],
+  emits: ["cancel", "add-item"],
   props: ["orderType", "orderItemToEdit"],
   methods: {
     addItemToBag() {
-      let orderItem;
+      let orderItem = {
+        itemID: this.generateRandomID(),
+        itemType: this.orderType,
+        protein: this.protein,
+        rice: this.rice,
+        beans: this.beans,
+        toppings: this.toppings,
+        sides: this.sides,
+        drinks: this.drinks,
+        itemPrice: this.calculateItemPrice(),
+      };
 
-      if (
-        this.orderType === "burrito" ||
-        this.orderType === "bowl" ||
-        this.orderType === "tacos"
-      ) {
-        orderItem = {
-          itemID: this.generateRandomID(),
-          itemType: this.orderType,
-          protein: this.protein,
-          rice: this.rice,
-          beans: this.beans,
-          toppings: this.toppings,
-          sides: this.sides,
-          drinks: this.drinks,
-          itemPrice: this.calculateItemPrice(),
-        };
-        this.$emit("add-item", orderItem);
-      } else {
-        orderItem = {
-          itemID: this.orderItemToEdit.itemID,
-          itemType: this.orderItemToEdit.itemType,
-          protein: this.protein,
-          rice: this.rice,
-          beans: this.beans,
-          toppings: this.toppings,
-          sides: this.sides,
-          drinks: this.drinks,
-          itemPrice: this.calculateItemPrice(),
-        };
-        this.$emit("update-item", orderItem);
-      }
+      this.$emit("add-item", orderItem);
     },
     calculateItemPrice() {
       let price = 0;
@@ -303,7 +278,9 @@ export default {
     },
   },
   created() {
+    console.log(this.orderItemToEdit);
     if (this.orderItemToEdit) {
+      console.log("this.itemToEdit", this.orderItemToEdit.protein);
       this.protein = this.orderItemToEdit.protein;
       this.rice = this.orderItemToEdit.rice;
       this.beans = this.orderItemToEdit.beans;
