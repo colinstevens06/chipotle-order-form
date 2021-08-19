@@ -8,7 +8,12 @@
       <button class="edit_back-button" @click="$emit('cancel')">Back</button>
     </div>
     <div class="edit-order_selected-item" v-if="orderSelected === true">
-      <BurritoOptions :orderItemToEdit="orderItemToEdit" />
+      <BurritoOptions
+        :orderItemToEdit="orderItemToEdit"
+        :orderType="orderType"
+        @cancel="$emit('cancel')"
+        @update-item="updateItem"
+      />
     </div>
   </div>
 </template>
@@ -20,8 +25,9 @@ export default {
   name: "EditOrder",
   props: {
     orderItems: Array,
+    orderType: String,
   },
-  emits: ["cancel"],
+  emits: ["cancel", "update-all-order-items"],
   components: {
     EditOrderOptions,
     BurritoOptions,
