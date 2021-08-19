@@ -28,7 +28,6 @@ export default {
   background: #e3e0c5;
   transition: 0.5s;
   box-shadow: 0 0 12px 0 rgb(0 0 0 / 20%);
-
   &:hover {
     cursor: pointer;
     transition: 0.5s;
@@ -37,3 +36,4 @@ export default {
   }
 }
 </style>
+

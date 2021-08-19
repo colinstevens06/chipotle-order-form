@@ -19,7 +19,7 @@ module.exports = {
   },
   pages: {
     index: {
-      entry: './src/main.js',
+      entry: './src/main.ts',
       title: 'Chipotle Order Form'
     }
   }

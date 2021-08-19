@@ -10,7 +10,6 @@
 
 <script>
 import Nav from "./components/Nav.vue";
-
 export default {
   name: "App",
   components: {
@@ -25,7 +24,6 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
-
 body {
   background: #1b0800;
 }

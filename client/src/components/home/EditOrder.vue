@@ -21,7 +21,6 @@
 <script>
 import EditOrderOptions from "./EditOrderOptions";
 import BurritoOptions from "./BurritoOptions.vue";
-
 export default {
   name: "EditOrder",
   props: {
@@ -42,9 +41,7 @@ export default {
   methods: {
     editSingleItem: function (input) {
       let itemToEdit = this.orderItems.filter((item) => item.itemID === input);
-
       this.orderItemToEdit = itemToEdit[0];
-
       this.orderSelected = true;
     },
     updateItem: function (item) {
@@ -54,7 +51,6 @@ export default {
       );
       let allOrderItems = this.orderItems;
       allOrderItems[itemToUpdateIndex] = item;
-
       this.$emit("update-all-order-items", allOrderItems);
       this.orderSelected = false;
     },

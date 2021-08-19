@@ -54,7 +54,6 @@
 <script>
 import BurritoOptions from "./BurritoOptions.vue";
 import EditOrder from "./EditOrder.vue";
-
 export default {
   name: "StartOrder",
   components: {
@@ -96,7 +95,6 @@ export default {
   margin: 25px auto;
   font-family: $fontFamily;
   overflow: scroll;
-
   .start-order_heading {
     text-align: center;
     font-size: 1.5rem;
@@ -104,13 +102,11 @@ export default {
     margin: 15px;
     // align-self: baseline;
   }
-
   .start-order_options {
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
     padding: 15px;
-
     .order-card {
       flex: 0 0 30.333%;
       margin-left: 3%;
@@ -121,7 +117,6 @@ export default {
       background: #fff;
       transition: 0.5s;
       text-align: center;
-
       &:hover {
         cursor: pointer;
         transition: 0.5s;
@@ -129,18 +124,15 @@ export default {
       }
     }
   }
-
   .order_bag {
     display: flex;
     flex-direction: column;
     text-align: center;
     gap: 25px;
     margin-top: 25px;
-
     .order_items-in-bag {
       font-size: 1.75rem;
     }
-
     .order_edit-complete {
       display: flex;
       justify-content: space-around;

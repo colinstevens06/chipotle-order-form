@@ -192,7 +192,6 @@ export default {
   methods: {
     addItemToBag() {
       let orderItem;
-
       if (
         this.orderType === "burrito" ||
         this.orderType === "bowl" ||
@@ -238,7 +237,6 @@ export default {
       } else if (this.protein.length > 1) {
         price += 9.5;
       }
-
       if (this.toppings.includes("Guacamole")) {
         price += 2.5;
       }
@@ -321,27 +319,22 @@ export default {
   * {
     margin-bottom: 10px;
   }
-
   hr {
     margin: 15px 0;
   }
-
   label {
     margin-left: 5px;
     margin-right: 25px;
   }
-
   label,
   input {
     font-size: 1.25rem;
     margin-bottom: 15px;
   }
-
   .form-buttons {
     display: flex;
     justify-content: space-evenly;
     margin-top: 20px;
-
     input,
     button {
       @include basicButton;
