@@ -162,12 +162,7 @@
     <h2>Price: ${{ itemPrice }}</h2>
 
     <div class="form-buttons">
-      <input
-        type="submit"
-        :value="
-          this.orderType === 'edit-order' ? 'Update Item' : 'Add Item to Bag'
-        "
-      />
+      <input type="submit" value="Add Item to Bag" />
       <button @click="$emit('cancel')">Cancel item</button>
     </div>
   </form>
@@ -187,7 +182,7 @@ export default {
       itemPrice: 0,
     };
   },
-  emits: ["cancel", "add-item", "update-item"],
+  emits: ["cancel", "add-item"],
   props: ["orderType", "orderItemToEdit"],
   methods: {
     addItemToBag() {
@@ -301,7 +296,9 @@ export default {
     },
   },
   created() {
+    console.log(this.orderItemToEdit);
     if (this.orderItemToEdit) {
+      console.log("this.itemToEdit", this.orderItemToEdit.protein);
       this.protein = this.orderItemToEdit.protein;
       this.rice = this.orderItemToEdit.rice;
       this.beans = this.orderItemToEdit.beans;

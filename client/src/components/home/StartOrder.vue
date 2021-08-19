@@ -18,7 +18,7 @@
     <div class="burrito-options" v-if="orderType === 'burrito'">
       <BurritoOptions
         @cancel="
-          orderItems.length >= 1
+          orderItems.length > 1
             ? (orderType = 'another-item')
             : (orderType = '')
         "
@@ -29,13 +29,11 @@
     <div class="editOrder" v-if="orderType === 'edit-order'">
       <EditOrder
         :orderItems="orderItems"
-        :orderType="orderType"
         @cancel="
-          orderItems.length >= 1
+          orderItems.length > 1
             ? (orderType = 'another-item')
             : (orderType = '')
         "
-        @update-all-order-items="updateAllOrderItems"
       />
     </div>
 
@@ -73,26 +71,22 @@ export default {
       this.orderItems = [...this.orderItems, item];
       this.orderType = "another-item";
     },
-    updateAllOrderItems: function (items) {
-      this.orderItems = items;
-    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .start-order_container {
-  position: relative;
   display: flex;
   flex-direction: column;
   // justify-content: space-between;
   background: rgb(236, 236, 236);
-  // min-heigt: 50vh;
-  min-width: 500px;
-  max-width: 50%;
+  min-height: 50vh;
+  min-width: 50%;
   border-radius: 5px;
   padding: 12px 24px;
-  margin: 25px auto;
+  margin: -3%;
+  // transform: translate(0, -25%);
   font-family: $fontFamily;
   overflow: scroll;
   .start-order_heading {
